@@ -33,6 +33,9 @@
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="empGroup.get('dateOfBirth')?.hasError('invalidDate')">
+      Date of Birth cannot be in the future.
+    </mat-error>
   </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Address 1</mat-label>
@@ -49,12 +52,12 @@
             <input matInput type="text" formControlName = "postal">
           </mat-form-field>
       </div>
-        <div class="row">
-          <mat-radio-group aria-label="Select an option" formControlName = "gender">
-            <mat-label><b>Gender</b></mat-label>
-            <mat-radio-button value="Male">Male</mat-radio-button>
-            <mat-radio-button value="Female">Female</mat-radio-button>
-          </mat-radio-group>
+        <div class="column">
+          <h3>Gender</h3>
+          <mat-button-toggle-group name="gender" aria-label="Select an option" formControlName = "gender">
+            <mat-button-toggle value="Male">Male</mat-button-toggle>
+            <mat-button-toggle value="Female">Female</mat-button-toggle>
+          </mat-button-toggle-group>
         </div>
         <div class="row">
           <mat-radio-group aria-label="Select an option" formControlName = "isActive">

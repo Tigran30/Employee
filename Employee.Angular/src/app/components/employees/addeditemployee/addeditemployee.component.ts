@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Employee } from 'src/app/Models/employee.model';
 import { EmployeesService } from 'src/app/services/employees.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl   } from '@angular/forms';
 import { DialogRef } from '@angular/cdk/dialog';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CoreService } from 'src/app/core/core.service';
@@ -26,7 +26,7 @@ export class AddEmployeeComponent implements OnInit {
     id :1,
   lastName :"",
   firstName :"",
-  dateOfBirth :new Date(),
+  dateOfBirth :['', [Validators.required, this.dateOfBirthValidator]],
   city :"",
   country :"",
   mobile :"",
@@ -38,6 +38,17 @@ export class AddEmployeeComponent implements OnInit {
    address2 :""
   })
     
+  }
+
+  dateOfBirthValidator(control: AbstractControl) {
+    const selectedDate = new Date(control.value);
+    const currentDate = new Date();
+
+    if (selectedDate > currentDate) {
+      return { invalidDate: true };
+    }
+
+    return null;
   }
 
 onFormCancel(){
