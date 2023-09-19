@@ -5,6 +5,7 @@ using Employee.Core.Infrastructure.Interfaces;
 using Employee.Core.Infrastructure.Services;
 using Employee.Core.Models;
 using Employee.Core.Models.ResponseModels;
+using Employee.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Employee.Service
@@ -16,6 +17,36 @@ namespace Employee.Service
         public EmployeeService(IEmployeeRepository employeeRepository)
         {
             this.employeeRepository = employeeRepository;
+        }
+
+        public async Task<EmployeeModel> GetEmployeeById(int id)
+        {
+            var employee = await employeeRepository
+                .AsQueryable()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            if (employee == null)
+            {
+                throw new EmployeeException(ResponseCode.EmployeeNotFound);
+            }
+          
+            return new EmployeeModel
+            {
+                Id = employee.Id,
+                City = employee.City,
+                FirstName = employee.FirstName,
+                Address1 = employee.Address1,
+                Address2 = employee.Address2,
+                Country = employee.Country,
+                DateOfBirth = employee.Dob,
+                Email = employee.Email,
+                Gender = (Gender)Enum.Parse(typeof(Gender), employee.Gender),
+                IsActive = employee.IsActive,
+                LastName = employee.LastName,
+                Mobile = employee.Mobile,
+                Postal = employee.Postal
+            };
         }
 
         public async Task<EmployeeResponseModel> GetEmployeeTotalList()
@@ -54,7 +85,7 @@ namespace Employee.Service
                 Country = model.Country,
                 Dob = model.DateOfBirth,
                 Email = model.Email,
-                Gender = model.Gender,
+                Gender = model.Gender.ToString(),
                 IsActive = model.IsActive,
                 Mobile = model.Mobile,
                 Postal = model.Postal
@@ -122,6 +153,7 @@ namespace Employee.Service
 
             return employees.Select(x => new EmployeeModel
             {
+                Id = x.Id,
                 City = x.City,
                 FirstName = x.FirstName,
                 Address1 = x.Address1,
@@ -129,7 +161,7 @@ namespace Employee.Service
                 Country = x.Country,
                 DateOfBirth = x.Dob,
                 Email = x.Email,
-                Gender = x.Gender,
+                Gender = (Gender)Enum.Parse(typeof(Gender),x.Gender),
                 IsActive = x.IsActive,
                 LastName = x.LastName,
                 Mobile = x.Mobile,

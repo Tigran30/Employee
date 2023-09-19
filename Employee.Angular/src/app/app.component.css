@@ -1,0 +1,21 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .main-body {
+    padding-top: 10px;
+    margin: 0 auto;
+    width: 100%; 
+    
+  }
+  
+  .main-body mat-form-field {
+    width: 100%;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent text from wrapping */
+  }
+  

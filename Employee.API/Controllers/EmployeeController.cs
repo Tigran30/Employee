@@ -60,5 +60,16 @@ namespace Employee.API.Controllers
                 Result = result,
             };
         }
+        
+        [HttpGet("GetEmployeeById")]
+        [ProducesResponseType(typeof(BaseResponse<EmployeeModel>), 200)]
+        public async Task<BaseResponse<EmployeeModel>> GetEmployeeById(int id)
+        {
+            var result = await employeeService.GetEmployeeById(id);
+            return new BaseResponse<EmployeeModel>
+            {
+                Result = result,
+            };
+        }
     }
 }

@@ -14,5 +14,6 @@ namespace Employee.Core.Infrastructure.Services
         Task<bool?> AddEmployee(EmployeeModel model);
         Task<bool?> UpdateEmployee(EmployeeUpdateModel model);
         Task<List<EmployeeModel>> GetEmployeesByFilter(EmployeeFilterModel filterModel);
+        Task<EmployeeModel> GetEmployeeById(int id);
     }
 }

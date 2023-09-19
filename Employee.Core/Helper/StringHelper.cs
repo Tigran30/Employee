@@ -19,5 +19,6 @@ namespace Employee.Core.Helper
             var emailRegex = new Regex("\\(?\\d{3}\\)?-? *\\d{3}-? *-?\\d{4}");
             return emailRegex.IsMatch(number);
         }
+
     }
 }

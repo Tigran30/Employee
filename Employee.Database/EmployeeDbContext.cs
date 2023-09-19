@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Employee.Database.Entities;
 
 namespace Employee.Database
 {
@@ -25,8 +29,7 @@ namespace Employee.Database
 
                 entity.HasIndex(e => e.Gender, "IX_Employee_Gendeer");
 
-                entity.HasIndex(e => e.LastName, "IX_Employee_LastName")
-                    .IsUnique();
+                entity.HasIndex(e => e.LastName, "IX_Employee_LastName");
 
                 entity.Property(e => e.Address1).HasMaxLength(200);
 

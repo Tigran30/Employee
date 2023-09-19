@@ -5,6 +5,7 @@ using Employee.Database;
 using Employee.Repository;
 using Employee.Service;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System.Linq;
 using System.Text.Json.Serialization;
 
@@ -18,6 +19,8 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
+builder.Host.UseSerilog((hostingContext, loggerConfiguration) =>
+    loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

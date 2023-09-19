@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.snackbar-container {
+    position: fixed;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%);
+    background-color: #333; /* Background color of the snackbar */
+    color: #fff; /* Text color */
+    padding: 16px; /* Padding inside the snackbar */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow */
+    z-index: 1000; /* Ensure it appears on top of other elements */
+  }
+  .snackbar-message {
+    font-size: 18px; /* Font size of the message */
+  }
