@@ -58,12 +58,9 @@
             <mat-button-toggle value="Male">Male</mat-button-toggle>
             <mat-button-toggle value="Female">Female</mat-button-toggle>
           </mat-button-toggle-group>
-        </div>
-        <div class="row">
           <mat-radio-group aria-label="Select an option" formControlName = "isActive">
-            <mat-label><b>IsActive</b></mat-label>
-            <mat-radio-button  [value]="true">True</mat-radio-button>
-            <mat-radio-button [value]="false">False</mat-radio-button>
+            <mat-radio-button  [value]="true">Active</mat-radio-button>
+            <mat-radio-button [value]="false">InActive</mat-radio-button>
           </mat-radio-group>
         </div>
       <div class="column">
