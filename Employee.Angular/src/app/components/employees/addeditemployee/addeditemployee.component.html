@@ -52,8 +52,8 @@
         <div class="row">
           <mat-radio-group aria-label="Select an option" formControlName = "gender">
             <mat-label><b>Gender</b></mat-label>
-            <mat-radio-button value="male">Male</mat-radio-button>
-            <mat-radio-button value="female">Female</mat-radio-button>
+            <mat-radio-button value="Male">Male</mat-radio-button>
+            <mat-radio-button value="Female">Female</mat-radio-button>
           </mat-radio-group>
         </div>
         <div class="row">
@@ -75,7 +75,7 @@
       </div>
   </div>
   <div mat-dialog-actions class="action">
-    <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button type="button" (click)="onFormCancel()">Cancel</button>
     <button mat-raised-button color="primary" type="submit">{{data ? 'update' :'Save'}}</button>
   </div>
 </form>

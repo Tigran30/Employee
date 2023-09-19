@@ -8,6 +8,7 @@ import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { CoreService } from './core/core.service';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 })
 export class AppComponent implements OnInit {
   title : string = '';
+  totalEmployees: number;
+  totalActiveEmployees: number;
+  totalMaleEmployees: number;
+  totalFemaleEmployees: number;
   displayedColumns: string[] = [
       'id', 
       'firstName',
@@ -37,9 +42,27 @@ export class AppComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private dialog : MatDialog,
-     private employeeService : EmployeesService) {}
+     private employeeService : EmployeesService,
+     private coreService : CoreService) {
+      this.totalEmployees = 0;
+      this.totalActiveEmployees =0;
+      this.totalMaleEmployees =0;
+      this.totalFemaleEmployees=0;
+     }
   ngOnInit(): void {
-    this.getEmployeeList()
+    this.getEmployeeList();
+    this.employeeService.getEmployeesTotalListByCategory().subscribe({
+      next :(response) =>{
+        this.totalEmployees = response.result.totalEmployees;
+        this.totalActiveEmployees = response.result.totalActiveEmployees;
+        this.totalMaleEmployees = response.result.totalMaleEmployees;
+        this.totalFemaleEmployees = response.result.totalFemaleEmployees;
+
+      }
+    })
+  }
+  onFormClick(message : string){
+    this.coreService.openSnackBar(message);
   }
   openAddEditEmpForm()
   {

@@ -17,7 +17,7 @@ namespace Employee.API.Controllers
             this.employeeService = employeeService;
         }
 
-        [HttpGet("GetEmployeesTotalList")]
+        [HttpGet("GetEmployeesTotalListByCategory")]
         [ProducesResponseType(typeof(BaseResponse<EmployeeResponseModel>), 200)]
         public async Task<BaseResponse<EmployeeResponseModel>> GetEmployeesTotalList()
         {

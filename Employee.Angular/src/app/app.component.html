@@ -4,7 +4,27 @@
   <button mat-raised-button  (click)="openAddEditEmpForm()">
     Add employee
   </button>
+  <div class="menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onFormClick('Clicked')">
+        <mat-icon>dialpad</mat-icon>
+        <span>Some Action</span>
+      </button>
+      <button mat-menu-item disabled >
+        <mat-icon>voicemail</mat-icon>
+        <span>Some Action</span>
+      </button>
+      <button mat-menu-item (click)="onFormClick('Clicked')">
+        <mat-icon>notifications_off</mat-icon>
+        <span>Some Action</span>
+      </button>
+    </mat-menu>
+  </div>
 </mat-toolbar>
+
 
 <div class="main-body">
   <mat-form-field class="main-body">
@@ -23,7 +43,7 @@
 
     <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
-      <td mat-cell *matCellDef="let row"> {{row.firstName}}% </td>
+      <td mat-cell *matCellDef="let row"> {{row.firstName}} </td>
     </ng-container>
 
     <ng-container matColumnDef="lastName">
@@ -104,4 +124,42 @@
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
 </div>
 
+<div class="dashboard">
+  <div class="dashboard-item">
+    <div class="dashboard-icon">
+      <mat-icon>people</mat-icon>
+    </div>
+    <div class="dashboard-info">
+      <div class="dashboard-title">Employees</div>
+      <div class="dashboard-value">{{ totalEmployees  }}</div>
+    </div>
+  </div>
+  <div class="dashboard-item">
+    <div class="dashboard-icon">
+      <mat-icon>check_circle</mat-icon>
+    </div>
+    <div class="dashboard-info">
+      <div class="dashboard-title">Active Employees</div>
+      <div class="dashboard-value">{{ totalActiveEmployees  }}</div>
+    </div>
+  </div>
+  <div class="dashboard-item">
+    <div class="dashboard-icon">
+      <mat-icon>male</mat-icon>
+    </div>
+    <div class="dashboard-info">
+      <div class="dashboard-title">Male Employees</div>
+      <div class="dashboard-value">{{ totalMaleEmployees  }}</div>
+    </div>
+  </div>
+  <div class="dashboard-item">
+    <div class="dashboard-icon">
+      <mat-icon>female</mat-icon>
+    </div>
+    <div class="dashboard-info">
+      <div class="dashboard-title">Female Employees</div>
+      <div class="dashboard-value">{{ totalFemaleEmployees  }}</div>
+    </div>
+  </div>
+</div>
 <router-outlet></router-outlet>

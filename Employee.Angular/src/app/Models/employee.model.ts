@@ -19,3 +19,10 @@ export interface BaseResponse<T>
     responseMessage : string,
     result : T
 }
+
+export interface EmployeeTotalModel {
+    totalEmployees: number,
+    totalActiveEmployees: number,
+    totalMaleEmployees: number,
+    totalFemaleEmployees: number
+}

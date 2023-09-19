@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
-import { Employee } from '../Models/employee.model';
+import { Employee,EmployeeTotalModel } from '../Models/employee.model';
 import { BaseResponse } from "../Models/employee.model"
 import { Observable, throwError } from 'rxjs';
 
@@ -27,13 +27,9 @@ export class EmployeesService {
     return this.http.post<BaseResponse<boolean>>(this.baseApiUrl+ "/UpdateEmployee", updateEmployeeRequest);
   }
 
-  getEmployeebyId(id : number) : Observable<BaseResponse<Employee>>
-  {
-    const params = new HttpParams().set('employeeId', id.toString());
-    return this.http.get<BaseResponse<Employee>>(this.baseApiUrl + "/GetEmployeeById",  {
-      params: {
-        id: id
-      }});
-  }
-  
+  getEmployeesTotalListByCategory() : Observable<BaseResponse<EmployeeTotalModel>>{
+
+    return this.http.get<BaseResponse<EmployeeTotalModel>>(this.baseApiUrl + "/GetEmployeesTotalListByCategory");
+ }
+
 }

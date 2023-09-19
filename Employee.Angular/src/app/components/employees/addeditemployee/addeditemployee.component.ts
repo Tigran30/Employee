@@ -40,6 +40,11 @@ export class AddEmployeeComponent implements OnInit {
     
   }
 
+onFormCancel(){
+  this.coreService.openSnackBar('Canceled');
+  this.dialog.close(false);
+}
+
   onFormSubmit(){
     if(this.empGroup.valid)
     {
@@ -51,8 +56,12 @@ export class AddEmployeeComponent implements OnInit {
             {
               if(response.responseCode === 0 && response.result)
               {
-                this.coreService.openSnackBar('Employee Updated','done');
+                this.coreService.openSnackBar('Employee Updated');
                 this.dialog.close(true);
+              }
+              else{
+                this.coreService.openSnackBar(response.responseMessage.toString());
+                this.dialog.close(false);
               }
             }
           });
@@ -65,8 +74,12 @@ export class AddEmployeeComponent implements OnInit {
             {
               if(response.responseCode === 0 && response.result)
               {
-                this.coreService.openSnackBar('Employee Added Successfully','done');
+                this.coreService.openSnackBar('Employee Added Successfully');
                 this.dialog.close(true);
+              }
+              else{
+                this.coreService.openSnackBar(response.responseMessage.toString());
+                this.dialog.close(false);
               }
             }
           });
